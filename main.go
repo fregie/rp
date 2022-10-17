@@ -20,6 +20,7 @@ var (
 
 func main() {
 	flag.Parse()
+	fmt.Printf("crt: %s", *crtStr)
 	sourceUrl, err := url.Parse(*source)
 	if err != nil {
 		fmt.Printf("Error parsing source url %s: %s", *source, err)
