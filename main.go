@@ -29,6 +29,9 @@ func main() {
 	httpsHandle := http.NewServeMux()
 	httpsHandle.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		proxy := httputil.NewSingleHostReverseProxy(sourceUrl)
+		proxy.Transport = &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		}
 		proxy.ServeHTTP(w, r)
 	}))
 
